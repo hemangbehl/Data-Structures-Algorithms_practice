@@ -19,6 +19,26 @@ class LinkedList:
         new.next = self.head
         self.head = new
     
+    def insertEnd(self,ele):
+        new = Node(ele)
+        new.next = None
+        curr = self.head
+        #check id list is empty
+        if self.head == None:
+            self.head = new
+            print("Inserted at head as list was empty")
+            return
+        else:
+            while (curr!=None):
+                prev = curr
+                curr = curr.next
+            
+            #at end of loop, curr is none and prev has some value
+            prev.next = new
+            new.next = curr
+            print ("Inserted at the end")
+            return
+
     def deleteKey(self, key):
         curr = self.head
 
@@ -54,7 +74,9 @@ second.next = third
 #print
 ll.printList()
 ll.insertHead(11)
-# ll.printList()
+ll.printList()
+ll.insertEnd(100)
+ll.printList()
 # ll.deleteKey(11)
 # ll.printList()
 # ll.deleteKey(11)
