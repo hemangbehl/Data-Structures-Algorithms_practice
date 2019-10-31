@@ -60,12 +60,22 @@ class LinkedList:
             prev.next = curr.next #prev cannot be empty as head case was handled earlier
             print ("Deleted key")
 
+    def length(self):
+        #wrapepr func for recurssion
+        return self.lengthcalc(self.head)
+
+    def lengthcalc(self, curr):
+        if curr == None:
+            return 0
+        #calculate
+        return 1 + self.lengthcalc(curr.next)
+
 #outside function
-def length(curr):
+def length_ext(curr):
     #for the first iteration curr should be the head
     if curr==None:
         return 0
-    return 1 + length(curr.next)
+    return 1 + length_ext(curr.next)
 
 
     
@@ -85,7 +95,8 @@ ll.insertHead(11)
 #ll.printList()
 ll.insertEnd(100)
 ll.printList()
-print ( length(ll.head) )
+print ( "Length: (external func) =",length_ext(ll.head) )
+print ("Length (internal func):",ll.length())
 # ll.deleteKey(11)
 # ll.printList()
 # ll.deleteKey(11)
