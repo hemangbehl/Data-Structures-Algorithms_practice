@@ -60,11 +60,11 @@ third = Node(3)
 #linking lists
 ll.head.next = second
 second.next = third
-#print
-ll.insertEnd(4)
-ll.insertEnd(5)
-ll.insertEnd(6)
-ll.printList()
+### print
+# ll.insertEnd(4)
+# ll.insertEnd(5)
+# ll.insertEnd(6)
+# ll.printList()
 print( ll.detect_loop() )
-#ll.printList()
-#print (ll,ll.head==ll.head)
+# ll.printList()
+# print (ll,ll.head==ll.head)

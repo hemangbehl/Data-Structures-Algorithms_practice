@@ -67,12 +67,12 @@ second = Node(2)
 third = Node(3)
 #linking lists
 ll.head.next = second
-second.next = third
+second.next = second #makes a loop
 #print
-ll.insertEnd(4)
-ll.insertEnd(5)
-ll.insertEnd(6)
-ll.printList()
+# ll.insertEnd(4)
+# ll.insertEnd(5)
+# ll.insertEnd(6)
+#ll.printList()
 print( ll.detect_loop_wrapper() )
 #ll.printList()
 #print (ll,ll.head==ll.head)
