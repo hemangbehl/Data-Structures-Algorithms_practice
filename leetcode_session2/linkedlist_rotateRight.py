@@ -54,7 +54,20 @@ class LinkedList:
         #l is the length of list
         if k == 0:
             return
-        
+        #else:
+        #point the end of list to the head
+        curr.next = self.head
+        #last node is now the head
+        split = l - k #split contains the node which should be split and be the tail
+        curr = self.head
+
+        for i in range(0, split-1):
+            curr= curr.next
+        #curr reaches the split node
+
+        self.head = curr.next #node after splitting node is Head
+        curr.next = None #make the splitting node tail
+
         
 #code
 ll = LinkedList()
@@ -68,6 +81,7 @@ second.next = third
 ll.insertEnd(4)
 ll.insertEnd(5)
 ll.insertEnd(6)
+ll.insertEnd(7)
 ll.printList()
-ll.rotateRight()
+ll.rotateRight(5)
 ll.printList()
