@@ -1,4 +1,6 @@
 #ref: https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
+#ref: https://github.com/souvikhaldar/DSA-in-python-and-go/blob/master/stacks/infix_to_postfix_prefix.py
+
 
 def infixToPostfix( expr):
     #takes expr a a string or list
@@ -13,15 +15,17 @@ def infixToPostfix( expr):
                 '-':3,
                 }
 
+    postfix = [] #empty list to store postfix expr
+
     for new in expr:
         if new not in operator.keys(): #an operand and not an operator
-            print(new)
+            postfix.append(new)
         elif new == '(': #special case
             stack.append('(')
         elif new ==')':
             #pop all until '('
             while len(stack) != 0 and stack[-1] != '(':
-                print(stack.pop())
+                postfix.append(stack.pop())
             
             #top of stack is now '('
             stack.pop()
@@ -34,12 +38,12 @@ def infixToPostfix( expr):
             stack.append(new)
         else: #last case, equal or low priority of new operator
             #pop first operator
-            print(stack.pop())
+            postfix.append(stack.pop())
             #pop all in stack with higher or equal priority than new operator
             while len(stack) != 0 \
                 and operator[stack[-1]] >= operator[new] \
                 and stack[-1] != '(':
-                print ( stack.pop() )
+                postfix.append ( stack.pop() )
             #now push new
             stack.append(new)
             
@@ -47,8 +51,9 @@ def infixToPostfix( expr):
     #we reach the end of expr
     #pop remaining operators if any
     while len(stack) != 0: #not empty
-        print ( stack.pop() )
-        
+        postfix.append ( stack.pop() )
+    
+    return postfix
 
 ### driver code
 
@@ -56,4 +61,9 @@ def infixToPostfix( expr):
 
 expr = "a+b*(c^d-e)^(f+g*h)-i"
 
-infixToPostfix(expr)
+postfix = infixToPostfix(expr)
+
+#convert list into string
+postfix_str =  "" .join ( postfix )
+
+print ("Postfix: ", postfix_str)
