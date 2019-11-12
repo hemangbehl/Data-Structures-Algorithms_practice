@@ -4,8 +4,9 @@ def infixToPostfix( expr):
     #takes expr a a string or list
 
     stack = [] #empty stack
-    operator = {'(':6,
-                ')':6,
+    operator = {'(':10,
+                ')':10,
+                '^':7, #added 
                 '/':5,
                 '*':5,
                 '+':3,
@@ -51,17 +52,8 @@ def infixToPostfix( expr):
 
 ### driver code
 
-expr = 'a+b*(c-d)/e-f*g'
-infixToPostfix(expr)
-# print (expr [1] == '+')
+# expr = 'a+b*(c-d)/e-f*g'
 
-# operator = {'(':6,
-#             ')':6,
-#             '/':5,
-#             '*':5,
-#             '+':3,
-#             '-':3,
-#             }
-            
-# print (expr[1] in operator.keys())
-# print (operator['+'] )
+expr = "a+b*(c^d-e)^(f+g*h)-i"
+
+infixToPostfix(expr)
