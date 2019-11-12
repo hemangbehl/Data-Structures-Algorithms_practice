@@ -1,11 +1,29 @@
 #ref: https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
 #ref: https://github.com/souvikhaldar/DSA-in-python-and-go/blob/master/stacks/infix_to_postfix_prefix.py
 
+class Stack:
 
-def infixToPostfix( expr):
+    def __init__(self):
+        self.stack = []
+
+    def push(self, ele):
+        self.stack.append(ele)
+    
+    def pop(self):
+        return self.stack.pop()
+    
+    def top(self):
+        return self.stack[-1] #return last element
+    
+    def isEmpty(self):
+        return self.stack == [] #empty list is []
+    
+    def printStack(self):
+        return self.stack
+
+def infixToPostfix(expr, stack):
     #takes expr a a string or list
-
-    stack = [] #empty stack
+    #stack is the list object
     operator = {'(':10,
                 ')':10,
                 '^':7, #added 
@@ -21,49 +39,45 @@ def infixToPostfix( expr):
         if new not in operator.keys(): #an operand and not an operator
             postfix.append(new)
         elif new == '(': #special case
-            stack.append('(')
+            stack.push('(')
         elif new ==')':
             #pop all until '('
-            while len(stack) != 0 and stack[-1] != '(':
+            while stack.isEmpty() == False and stack.top() != '(':
                 postfix.append(stack.pop())
             
             #top of stack is now '('
             stack.pop()
             #( and ) discarded
-        elif len(stack) == 0 or stack[-1] == '(':
+        elif stack.isEmpty() == True or stack.top() == '(':
             #push new initial operator if stack is empty or top is (
-            stack.append(new)
-        elif operator[new] > operator[stack[-1]]: #high precendence
+            stack.push(new)
+        elif operator[new] > operator[stack.top()]: #high precendence
             #push
-            stack.append(new)
+            stack.push(new)
         else: #last case, equal or low priority of new operator
             #pop first operator
             postfix.append(stack.pop())
             #pop all in stack with higher or equal priority than new operator
-            while len(stack) != 0 \
-                and operator[stack[-1]] >= operator[new] \
-                and stack[-1] != '(':
+            while stack.isEmpty() == False \
+                and operator[stack.top()] >= operator[new] \
+                and stack.top() != '(':
                 postfix.append ( stack.pop() )
             #now push new
-            stack.append(new)
+            stack.push(new)
             
     #end of for loop
     #we reach the end of expr
     #pop remaining operators if any
-    while len(stack) != 0: #not empty
+    while stack.isEmpty() == False: #not empty
         postfix.append ( stack.pop() )
     
     return postfix
 
 ### driver code
-
 # expr = 'a+b*(c-d)/e-f*g'
-
+stack = Stack()
 expr = "a+b*(c^d-e)^(f+g*h)-i"
-
-postfix = infixToPostfix(expr)
-
+postfix = infixToPostfix(expr, stack)
 #convert list into string
 postfix_str =  "" .join ( postfix )
-
 print ("Postfix: ", postfix_str)
