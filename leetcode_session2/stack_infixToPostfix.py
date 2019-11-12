@@ -1,3 +1,5 @@
+#ref: https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
+
 def infixToPostfix( expr):
     #takes expr a a string or list
 
