@@ -42,7 +42,6 @@ class LinkedList:
 
     def reverse(self, head, tailNext):
         curr = head
-        newHead = curr
         newTail = head
         prev= None
         
@@ -50,22 +49,18 @@ class LinkedList:
             next = curr.next #stores next pointer
             curr.next = prev #curr points to previous node or None
             prev = curr #prev node is now the current node
-            newHead = curr #newHead is now current node
             curr = next #current advances to the next node which was stored
 
-        return newHead, newTail
+        return prev, newTail
     
     def k_reverse(self, curr, k):
         
         if curr == None:
             return None
 
-        if curr == self.head: #change global head
-            print (" head found ")
-
         temp = curr 
         i = 0
-        while i < k and temp.next != None: #iterate k times to reach the next k group
+        while i < k and temp != None: #iterate k times to reach the next k group
             i += 1
             temp = temp.next
         
@@ -82,20 +77,6 @@ class LinkedList:
             self.head = newHead
         
         newTail.next = self.k_reverse(temp, k)
-        
-        # if newTail.next == None:
-        #     print("stopping criteria")
-        #     return
-
-        ###debugging
-        # head = curr
-        # while curr != None:
-        #     curr = curr.next
-        
-        # newHead, newTail = self.reverse(head, curr)
-        # if head == self.head: #change global head
-        #     self.head = newHead
-        #     print(newHead.data, newTail.data)
 
         return newHead
         
@@ -116,5 +97,5 @@ ll.insertEnd(7)
 ll.insertEnd(8)
 ll.insertEnd(9)
 ll.printList()
-newHead = ll.k_reverse(ll.head, 3)
+newHead = ll.k_reverse(ll.head, 4)
 ll.printList()
