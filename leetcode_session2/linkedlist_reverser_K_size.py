@@ -69,15 +69,16 @@ class LinkedList:
             i += 1
             temp = temp.next
         
-        if i==0:
+        #stopping criteria
+        if i==0: #when temp is the last node and point to NULL, we stop
             return
 
         newHead, newTail = self.reverse(curr, temp)
-        print ("k-head", newHead.data)
-        print ("k-tail", newTail.data)
+        # print ("k-head", newHead.data)
+        # print ("k-tail", newTail.data)
         
         if curr == self.head: #change global head
-            print ("changing head to ", newHead.data)
+            # print ("changing head to ", newHead.data)
             self.head = newHead
         
         newTail.next = self.k_reverse(temp, k)
