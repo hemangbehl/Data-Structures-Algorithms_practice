@@ -37,4 +37,4 @@ def HaveAcq(i, j):
     return False
 
 #driver code
-print ( find_celeb ( [1, 1] ))
+print ( find_celeb ( [0, 1] ))
