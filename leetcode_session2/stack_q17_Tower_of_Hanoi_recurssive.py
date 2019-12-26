@@ -10,7 +10,7 @@ TC: O(2^n - 1)
 '''
 def TOH ( n, A, C, B):
     #takes no. of disks, src, dest, using aux
-    if n>0:
+    if n>0: 
         TOH(n-1, A, B, C) #A to B using C
         print("Move disk#",n," from",A," to", C)
         TOH(n-1, B, C, A) #B to C using A
