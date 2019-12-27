@@ -1,3 +1,8 @@
+'''
+TC: O(n^2) , n squared coz in the worst case, we will push all the 
+elements to the temp stack.
+SC: O(n), as we have a temp stack, s2
+'''
 def sortStackUsingTempStack(s1):
     s2 = [] #empty
     if s1 == []:
