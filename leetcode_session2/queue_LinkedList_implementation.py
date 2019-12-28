@@ -9,6 +9,11 @@ class Queue_ll:
         self.last = None
     
     def enqueue(self, ele):
+        '''
+        without using 'last' pointer we can enqueue elements by reaching the last node pointing to null
+        and then adding the node after it. As such TC: O(n)
+        When we use 'last' pointer, TC: O(1)
+        '''
         new = Node(ele) #new points to None
         if self.last == None:
             self.last = new
@@ -21,6 +26,7 @@ class Queue_ll:
         return self.last == None
     
     def dequeue(self):
+        ''' TC: O(1) '''
         #remove front element being head
         if self.head == None: #empty
             return None
