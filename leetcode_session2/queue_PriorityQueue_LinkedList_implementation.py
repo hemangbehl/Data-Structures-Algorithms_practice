@@ -21,24 +21,25 @@ class PriorityQueue_ll:
         Priority DOES affect enqueue operation.
         '''
         new = Node(data, prio)
-        if self.head == None: #empty list
+
+        if self.head == None: #empty linked list
             self.head = new
             return
-        #else atleast one node exists
-        curr = self.head
-        prev = None
-        
-        while curr != None and new.priority < curr.priority :
-            prev = curr
-            curr = curr.next
-        
-        if prev == None: #add at the head
+        #else
+        #check if new node should be inserted at the head of the list
+        if new.priority > self.head.priority:
             new.next = self.head
             self.head = new
-        else:#add in the middle or at the end
-            temp = prev.next
-            prev.next = new
-            new.next = temp     
+        else: #check for rest
+            curr = self.head
+            
+            #loop until we reach last node or the node before 'new' node should be inserted
+            while curr.next != None and curr.next.priority > new.priority:
+                curr = curr.next
+            
+            new.next = curr.next #new points to the next of curr node
+            curr.next = new #curr points to the
+
         
     def isEmpty(self):
         #return True if empty
