@@ -3,70 +3,63 @@ class Node:
         self.data = data
         self.priority = priority
         self.next = None
+'''
+The list is so created so that the highest priority element is always at the head of the list.
+As such, Enqueue() will push the node in dedscending order. A priority of 10 is higher than 2.
 
+Enqueue(ele, prio)  : O(n), node added according to its priority
+Dequeue()           : O(1), node taken out from head
+
+'last' pointer is not required as we do not add to the end.
+'''
 class PriorityQueue_ll:
     def __init__(self):
         self.head = None
-        self.last = None
-    
-    def enqueue(self, ele, prio):
+        
+    def enqueue(self, data, prio):
         '''
-        Priority doesn't affect enqueue operation.
-        Without using 'last' pointer we can enqueue elements by reaching the last node pointing to null
-        and then adding the node after it. As such TC: O(n)
-        When we use 'last' pointer, TC: O(1)
+        Priority DOES affect enqueue operation.
         '''
-        new = Node(ele, prio) #new points to None
-        if self.last == None:
-            self.last = new
+        new = Node(data, prio)
+        if self.head == None: #empty list
             self.head = new
-        else: #not empty
-            self.last.next = new
-            self.last = new
-    
+            return
+        #else atleast one node exists
+        curr = self.head
+        prev = None
+        
+        while curr != None and new.priority < curr.priority :
+            prev = curr
+            curr = curr.next
+        
+        if prev == None: #add at the head
+            new.next = self.head
+            self.head = new
+        else:#add in the middle or at the end
+            temp = prev.next
+            prev.next = new
+            new.next = temp     
+        
     def isEmpty(self):
         #return True if empty
         return self.last == None
     
     def dequeue(self):
         ''' 
-        Priority affects dequeue operation. We need to search for the highest
-        priority and then delete that node.
-        TC: O(n) '''
+        We remove the head as it has the highest priority
+        TC: O(1) '''
         #remove front element being head
         if self.head == None: #empty list
             return None
         #else
-        if self.head == self.last: #one node in list
-            to_del_data = self.head.data
-            self.head = None
-            self.last = None
-            return to_del_data
-        #if nodes are greater than 1, we need to find the node with max priority
-        to_del_data = 0
-        prev = 0
-        curr = self.head
-        max_prio = curr.priority
-        max_prio_prev_node = None
+        del_data = self.head.data
+        self.head = self.head.next
+        #noting points to original head node so it is removed automatically
+        return del_data
 
-        while curr != None:
-            if max_prio < curr.priority:
-                max_prio_prev_node = prev
-            prev = curr
-            curr = curr.next    
-        
-        #to delete node after prev
-        if max_prio_prev_node == None: #need to delete head
-            to_del_data = self.head.data
-            self.head = self.head.next
-        else:
-            #delete node after prev
-            to_del_data = max_prio_prev_node.next.data
-            max_prio_prev_node.next = max_prio_prev_node.next.next
-            if max_prio_prev_node.next == None: #in case node removed was last
-                self.last = max_prio_prev_node 
-                        
-        return to_del_data #return data of deleted node
+    def top(self):
+        #returns data of the 'head' node of the linked list
+        return self.head.data
     
     def printList(self):
         curr = self.head
