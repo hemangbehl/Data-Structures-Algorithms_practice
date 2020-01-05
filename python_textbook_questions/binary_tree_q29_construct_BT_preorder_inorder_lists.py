@@ -28,48 +28,44 @@ class BinaryTree:
     
 # Function to construct BT
 
-def constructBT( ele, preorder, inorder):
+def constructBT( ele, preorder, inorder, inorder_index):
     if ele == None:
         return None
-    
-    mid = Node(ele)
-
     left = []
     right = []
-    found = 0
-    for i in inorder: #split INORDER list into left and right by mid(root)
-                        #this loop is O(n) so total recursive function has O(n^2)
-        if i == ele:
-            found = 1
-        elif found == 0:
-            left.append(i)
-        else:
-            right.append(i)
-    
-    # print("left = {} and right={}".format(left,right) )
-    # print("len pre = {} and in={}".format(len(preorder),len(inorder)) )
 
+    #splitting inorder list into left and right is now in constant time O(1)
+    midIndex = inorder_index[ele]
+    left = inorder[:midIndex]
+    right = inorder[midIndex:]
 
-    if left != []:
+    mid = Node(ele)
+    if preorder != []:
         #not empty
         leftroot = preorder.pop(0) #get first element
 
-        mid.left = constructBT(leftroot, preorder, left)
-        
-    if right != []:
+        mid.left = constructBT(leftroot, preorder, left, inorder_index)
+
+    if preorder != []:
         rightroot = preorder.pop(0)
 
-        mid.right = constructBT(rightroot, preorder, right)
+        mid.right = constructBT(rightroot, preorder, right, inorder_index)
     
     return mid
 
 #driver code
 bt = BinaryTree()
-# inorder = "DBEAFC"
-# preorder = "ABDECF"
 inorder = ['D', 'B', 'E', 'A', 'F', 'C'] 
 preorder = ['A', 'B', 'D', 'E', 'C', 'F'] 
+
 root = preorder[0]
 preorder = preorder[1:]
-bt.root = constructBT(root, preorder, inorder)
+inorder_index = {} #dict
+
+#add indexes of elements in INORDER to a dict
+i = 0
+for ele in inorder:
+    inorder_index[ele] = i
+
+bt.root = constructBT(root, preorder, inorder, inorder_index)
 bt.print()
