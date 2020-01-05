@@ -19,4 +19,5 @@ for i in inorder:
     else:
         right.append(i)
 
-print("left ={} ,right={}".format(left, right))
+# print("left ={} ,right={}".format(left, right))
+print  ( inorder[100:] )
