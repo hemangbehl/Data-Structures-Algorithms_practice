@@ -34,6 +34,8 @@ class BinaryTree:
 # Function
 def con(ele, preorder):
     #ele -->element, preorder--> list
+    if ele == None or preorder == []:
+        return None
     if ele == "L":
         #leaf node
         return Node("L")
@@ -56,8 +58,10 @@ bt = BinaryTree()
 preorder = "I,L,I,L,L" #TEST #1
 preorder = "I,I,L,I,L,L,I,L,L" #TEST #2
 preorder = preorder.split(",")
+# preorder = []
 # print(preorder)
-bt.root = con(preorder.pop(0), preorder)
-
-bt.print()
-
+if preorder != []:
+    bt.root = con(preorder.pop(0), preorder)
+    bt.print()
+else:
+    print("empty list")
