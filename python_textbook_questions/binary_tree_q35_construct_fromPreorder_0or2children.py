@@ -53,7 +53,8 @@ bt = BinaryTree()
 # bt.root.right = Node(3)
 # bt.root.right.left = Node(6)
 # bt.root.right.right = Node(7)
-preorder = "I,L,I,L,L"
+preorder = "I,L,I,L,L" #TEST #1
+preorder = "I,I,L,I,L,L,I,L,L" #TEST #2
 preorder = preorder.split(",")
 # print(preorder)
 bt.root = con(preorder.pop(0), preorder)
