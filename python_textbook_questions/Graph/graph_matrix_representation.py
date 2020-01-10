@@ -1,5 +1,5 @@
 ## https://stackoverflow.com/questions/19472530/representing-graphs-data-structure-in-python
-
+## https://github.com/joeyajames/Python/blob/master/graph_adjacency-matrix.py
 
 ##ref: https://ide.geeksforgeeks.org/9je5j6jJ13 #This code is contributed by Rajat Singhal
 
@@ -9,7 +9,7 @@ class Graph:
         #adjMatrix = adjacency matrix 2D 
         self.adjMatrix = [ [-1] * numvertex for x in range(numvertex) ]
         self.numvertex = numvertex #set size as no. of vertices
-        self.vertices = {}        #empty dict to contain vertices
+        self.vertices = {} #empty dict to contain assigned 'name' of the vertices
         self.verticeslist = [0]*numvertex #allocate space using dummy values of [0]
 
     def set_vertex(self, vtx, id): 
@@ -28,7 +28,9 @@ class Graph:
         return self.verticeslist
 
     def get_edges(self): #edges connections b/w 2 nodes(vertices)
-        edges = []
+        edges = [] #empty list to store the edges
+        #loop through the matrix twice
+        #and add the edges which are not absent(-1)
         for i in range (self.numvertex):
             for j in range (self.numvertex):
                 if (self.adjMatrix[i][j] != -1):
