@@ -12,10 +12,10 @@ class Graph:
         self.vertices = {} #empty dict to contain assigned 'name' of the vertices
         self.verticeslist = [0]*numvertex #allocate space using dummy values of [0]
 
-    def set_vertex(self, vtx, id): 
-        if 0 <= vtx <= self.numvertex: #vertex index should be valid
-            self.vertices[id] = vtx  #
-            self.verticeslist[vtx] = id
+    def set_vertex(self, vtxid, name): 
+        if 0 <= vtxid <= self.numvertex: #vertex index should be valid
+            self.vertices[name] = vtxid  #
+            self.verticeslist[vtxid] = name
 
     def set_edge(self, frm, to, cost = 0): #set_edge src to dest with cost/weight 'x'
         frm = self.vertices[frm] #get src vertex 
