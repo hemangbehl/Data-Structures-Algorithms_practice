@@ -8,6 +8,11 @@ class Graph:
         self.numvertex = numvertex #set size as no. of vertices
  
     def add_edge(self, frm, to, cost = 0): #add_edge src to dest with cost/weight 'x'
+        
+        if frm == to:
+            print("same source and destination. Invalid path.")
+            return
+
         self.adjMatrix[frm][to] = cost
         #for directed graph do not add this
         self.adjMatrix[to][frm] = cost
@@ -21,9 +26,6 @@ class Graph:
                     edges.append( ( i, j, self.adjMatrix[i][j] ) )
         
         return edges
-        
-    def get_matrix(self):
-        return self.adjMatrix
     
     def printMatrix(self):
         n = self.numvertex
