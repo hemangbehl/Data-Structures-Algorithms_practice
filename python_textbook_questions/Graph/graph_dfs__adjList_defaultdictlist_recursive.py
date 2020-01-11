@@ -16,21 +16,13 @@ class Graph:
                 print(j, end='-> ')
             print("")
 
-    def DFS(self, v):
-        stack = list()
-        stack.append(v)
-        visited = set()
-        visited.add(v)
+    def DFS(self, vertex, visited = set() ):
+        visited.add(vertex)
+        print("vertex # {}".format(vertex))
 
-        while stack:
-            vertex = stack.pop()
-            print(vertex, end=' ')
-            
-            for adjVertex in self.graph[vertex]:
-                if adjVertex not in visited:
-                    visited.add(adjVertex)
-                    stack.append(adjVertex)
-        print("")
+        for adjVertex in self.graph[vertex]:
+            if adjVertex not in visited:
+                self.DFS(adjVertex, visited)
 
 #driver code
 g = Graph(5)
@@ -40,5 +32,7 @@ g.add_edge(4, 0)
 g.add_edge(3, 4)
 g.add_edge(0, 3)
 g.add_edge(0, 2)
-g.DFS(0)
 g.printAllEdges()
+print("DFS traversal")
+g.DFS(0)
+
