@@ -3,7 +3,6 @@ class BinHeap:
         self.heapList = [0]
         self.currentSize = 0
 
-
     def percUp(self,i):
         while i // 2 > 0:
           if self.heapList[i] > self.heapList[i // 2]:
@@ -64,7 +63,7 @@ class BinHeap:
 
 bh = BinHeap()
 bh.buildHeap([9,5,6,2,3])
-
+print( "HeapList is: ", bh.heapList[1:] )
 print(bh.delTopOfHeap())
 print(bh.delTopOfHeap())
 print(bh.delTopOfHeap())
