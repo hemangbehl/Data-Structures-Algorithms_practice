@@ -1,8 +1,8 @@
 class BinHeap:
     def __init__(self):
-        self.heapList = [0]
+        self.heapList = [0] #starting index of 0 is kept blank and not used
+                            #so that heap index starts from '1' for easier calculations
         self.currentSize = 0
-
 
     def percUp(self,i):
         while i // 2 > 0:
