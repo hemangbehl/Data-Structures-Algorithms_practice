@@ -3,7 +3,7 @@ class BinHeap:
         self.heapList = [0]
         self.currentSize = 0
 
-    def percUp(self,i):
+    def percUp(self, i):
         while i // 2 > 0:
           if self.heapList[i] > self.heapList[i // 2]:
              #if child is greater than parent, swap them
@@ -12,12 +12,12 @@ class BinHeap:
              self.heapList[i] = tmp
           i = i // 2
 
-    def insert(self,k):
-      self.heapList.append(k)
+    def insert(self, ele):
+      self.heapList.append(ele)
       self.currentSize = self.currentSize + 1
       self.percUp(self.currentSize)
 
-    def percDown(self,i):
+    def percDown(self, i):
       while (i * 2) <= self.currentSize:
           mc = self.maxChild(i)
           if self.heapList[i] < self.heapList[mc]:
@@ -26,7 +26,7 @@ class BinHeap:
               self.heapList[mc] = tmp
           i = mc
 
-    def minChild(self,i):
+    def minChild(self, i):
       if i * 2 + 1 > self.currentSize:
           return i * 2
       else:
@@ -35,7 +35,7 @@ class BinHeap:
           else:
               return i * 2 + 1
         
-    def maxChild(self,i):
+    def maxChild(self, i):
       if i * 2 + 1 > self.currentSize:
           return i * 2
       else:
@@ -53,10 +53,10 @@ class BinHeap:
       self.percDown(1)
       return retval
 
-    def buildHeap(self,alist):
-      i = len(alist) // 2
-      self.currentSize = len(alist)
-      self.heapList = [0] + alist[:]
+    def buildHeap(self, arr):
+      i = len(arr) // 2
+      self.currentSize = len(arr)
+      self.heapList = [0] + arr[:]
       while (i > 0):
           self.percDown(i)
           i = i - 1

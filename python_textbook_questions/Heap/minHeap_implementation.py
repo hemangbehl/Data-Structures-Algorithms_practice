@@ -43,10 +43,10 @@ class BinHeap:
       self.percDown(1)
       return retval
 
-    def buildHeap(self, alist):
-      i = len(alist) // 2
-      self.currentSize = len(alist)
-      self.heapList = [0] + alist[:]
+    def buildHeap(self, arr):
+      i = len(arr) // 2
+      self.currentSize = len(arr)
+      self.heapList = [0] + arr[:]
       while (i > 0):
           self.percDown(i)
           i = i - 1
