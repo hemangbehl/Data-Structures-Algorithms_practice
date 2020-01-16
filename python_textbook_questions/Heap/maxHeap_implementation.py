@@ -5,12 +5,12 @@ class BinHeap:
 
     def percUp(self, i):
         while i // 2 > 0:
-          if self.heapList[i] > self.heapList[i // 2]:
-             #if child is greater than parent, swap them
-             tmp = self.heapList[i // 2]
-             self.heapList[i // 2] = self.heapList[i]
-             self.heapList[i] = tmp
-          i = i // 2
+            if self.heapList[i] > self.heapList[i // 2]:
+                #if child is greater than parent, swap them
+                tmp = self.heapList[i // 2]
+                self.heapList[i // 2] = self.heapList[i]
+                self.heapList[i] = tmp
+            i = i // 2
 
     def insert(self, ele):
       self.heapList.append(ele)
