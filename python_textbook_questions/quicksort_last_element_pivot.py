@@ -13,15 +13,15 @@ def partition(arr, low, high):
     pivot = arr[high]
     #set index i for smaller element as low-1
     i = low - 1
-    print("partition", )
+    #print("partition", )
     for j in range(low, high): # j = low, j < high
         #check if curr ele 'j' is < pivot
-        print("curr:{}, pivot:{}".format(arr[j], pivot ) )
+        #print("curr:{}, pivot:{}".format(arr[j], pivot ) )
         if arr[j] < pivot:
             #inc 'i' and swap i and j elements
             i = i + 1
             arr[i], arr[j] = arr[j], arr[i]
-            print("swapped", arr)
+            #print("swapped", arr)
     #end of for
 
     #inc 'i' and swap pivot
