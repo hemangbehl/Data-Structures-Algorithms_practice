@@ -1,23 +1,19 @@
-# inorder = 'ABCDEF'
+def countWays( arr,  n):
+    prevOneIdx = -1
+    numWays = 0
+    #for ( i = 0; i < n; ++i)
+    for i in range(0, n):
+        if arr[i] == '1':
+            if prevOneIdx != -1:
+                numOnes = i - prevOneIdx
+                numWays *= numOnes
+            else:
+                # there is at least one in the input
+                numWays = 1
+            prevOneIdx = i
+    return numWays
 
-# left, right = inorder.split("A")
-# print("left", left, left == "")
-# print (left,"-", right)
+#driver code
 
-inorder = ['D', 'B', 'E', 'A', 'F', 'C'] 
-preorder = ['A', 'B', 'D', 'E', 'C', 'F'] 
-
-ele = "A"
-left = []
-right = []
-found = 0
-for i in inorder:
-    if i == ele:
-        found = 1
-    elif found == 0:
-        left.append(i)
-    else:
-        right.append(i)
-
-# print("left ={} ,right={}".format(left, right))
-print  ( inorder[100:] )
+arr = '10101'
+print ("num ways:", countWays(arr, len(arr) ) )
