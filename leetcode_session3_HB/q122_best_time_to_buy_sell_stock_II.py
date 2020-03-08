@@ -1,7 +1,7 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         
-        n = len(prisdces)
+        n = len(prices)
         
         if n <= 1:
             return 0
