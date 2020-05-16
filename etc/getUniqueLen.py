@@ -29,7 +29,7 @@ def get_unique_char(s):
         if total_len <= 50:
             return ans
         #else
-        print("total_len", total_len, max_len)
+        # print("total_len", total_len, max_len)
         total_len = total_len - i[1] #subtract occurence
         ans.append(i[0])
     
