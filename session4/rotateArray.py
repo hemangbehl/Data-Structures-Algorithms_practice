@@ -6,20 +6,28 @@ def rotateArr(arr, d, n = len(arr) ):
     
     if d == 0: #no rotation
         return arr
-    else:
-        arr2 = [None] * n
+    elif d > n: #handle overflow of rotation size
+        d = d - n
+    #else:
+    temparr = []
 
-    for i in range(d, n):
-        arr2[curr] = arr[i]
-        curr += 1 #increment arr
-    
-    #copy remaining elements
+    #store first d elements in temp array
     for i in range(0, d):
-        arr2[curr] = arr[i]
+        temparr.append( arr[i] )
+    
+    #copy remaining elements d to n inplace in array
+    for i in range(d, n):
+        arr[curr] = arr[i]
         curr += 1
     
-    return arr2
+    #copy remaining elements from temp array to original array
+    for ele in temparr:
+        arr[curr] = ele
+        curr += 1
+    
+    return arr
 
 print(arr)
-d= 2
-print("Rotated array by ",d ,"= ", rotateArr(arr,d) )
+
+d = 9
+print("Rotated array by ",d ,"= ", rotateArr(arr, d) )
