@@ -43,6 +43,9 @@ def deletion(root, key):
                         dict[x].left = None
                 if key_node:
                     key_node.data = temp.data
+            #end of for
+    #end of while loop
+
     return root
 
 # Driver code
