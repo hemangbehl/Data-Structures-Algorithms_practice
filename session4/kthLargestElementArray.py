@@ -12,7 +12,7 @@ def k_largest(arr, k):
 
         #maintain heap size
         if len(minheap) > k:
-            heapq.heappop(minheap)
+            heapq.heappop(minheap) #remove top most (smallest) element
     
     #top most ele in minheap is kth largest
     return minheap[0]
